@@ -24,10 +24,6 @@ fi
 
 if [ "$MODE" = "SPEC_MODE" ]; then
   git add spec/ 2>/dev/null || true
-  if ! git diff --cached --quiet; then
-    MSG=$(bash .claude/hooks/summarize-diff.sh spec)
-    git commit --allow-empty -m "$MSG" --no-verify 2>/dev/null || true
-  fi
 elif [ "$MODE" = "IMPL_MODE" ]; then
   git add -A 2>/dev/null || true
   git reset HEAD -- spec/ 2>/dev/null || true
